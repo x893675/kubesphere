@@ -79,6 +79,9 @@ func (r *Reconciler) SetupWithManager(mgr ctrl.Manager) error {
 }
 
 func (r *Reconciler) defaultConfiguration(overrideValues map[string]string) map[string]string {
+	if overrideValues == nil {
+		overrideValues = make(map[string]string)
+	}
 	if r.GatewayOptions.Repository != "" {
 		overrideValues["controller.image.repository"] = r.GatewayOptions.Repository
 	}
